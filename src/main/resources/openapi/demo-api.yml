@@ -1,0 +1,49 @@
+openapi: 3.0.1
+info:
+  title: Notifications API
+  version: 1.0.0
+paths:
+  /api/v1/notifications:
+    post:
+      tags:
+        - Notifications
+      operationId: sendNotification
+      description: Send a notification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DemoSendNotificationRequest'
+      responses:
+        '200':
+          description: Notification sent
+    get:
+      tags:
+        - Notifications
+      operationId: getAllNotifications
+      description: Get all notifications
+      responses:
+        '200':
+          description: Returned all notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DemoSendNotificationResponse'
+
+components:
+  schemas:
+    DemoSendNotificationRequest:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+    DemoSendNotificationResponse:
+      type: object
+      properties:
+        notifications:
+          type: array
+          items:
+            type: string
